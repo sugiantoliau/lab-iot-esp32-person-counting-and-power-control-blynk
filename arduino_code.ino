@@ -1,17 +1,8 @@
 /* Fill-in information from Blynk Device Info here */
-/*
-#define BLYNK_TEMPLATE_ID           "TMPL6LxFuxqDH"
-#define BLYNK_TEMPLATE_NAME         "ESP32 IOT Project Study"
-#define BLYNK_AUTH_TOKEN            "6yDMqJKzfI9IZVNX-wQFM19Upe4FQrBz"
 
-#define BLYNK_TEMPLATE_ID "TMPL6ko3w3RkQ"
-#define BLYNK_TEMPLATE_NAME "ProjectIOT"
-#define BLYNK_AUTH_TOKEN "leZnmBvatlOcQiJxZ_GEy3e-TCYVVmMD"
-*/
 #define BLYNK_TEMPLATE_ID "TMPL6r2R5TYak"
 #define BLYNK_TEMPLATE_NAME "ESP32 IOT Project Study"
-#define BLYNK_AUTH_TOKEN "tdNXYhOaZ6m7NFIjmrlMsECW2YTi_cAY"
-
+#define BLYNK_AUTH_TOKEN "Your_Blynk_Auth_Token"
 
 #include <WiFi.h>
 #include <WiFiClient.h>
@@ -21,13 +12,9 @@
 /* Comment this out to disable prints and save space */
 #define BLYNK_PRINT Serial
 
-
 // Your WiFi credentials.
-// Set password to "" for open networks.
-char ssid[] = "MiPoco";
-//"KnDwifi";
-char pass[] = "G0dBl355U";
-//"KnD16082604";
+char ssid[] = "Your_WiFi_Name";
+char pass[] = "Your_WiFi_Password";
 
 // --- Definisi Pin Hardware ---
 #define PIR_PIN 13      
@@ -83,13 +70,9 @@ BLYNK_WRITE(V0)
 
 // This function is called every time the device is connected to the Blynk.Cloud
 BLYNK_CONNECTED()
-{
-  // Change Web Link Button message to "Congratulations!"
-  //Blynk.setProperty(V3, "offImageUrl", "https://static-image.nyc3.cdn.digitaloceanspaces.com/general/fte/congratulations.png");
-  //Blynk.setProperty(V3, "onImageUrl",  "https://static-image.nyc3.cdn.digitaloceanspaces.com/general/fte/congratulations_pressed.png");
+{ 
   Blynk.setProperty(V3, "offImageUrl","https://imgur.com/WHx1WG6");
-  Blynk.setProperty(V3, "onImageUrl","https://imgur.com/a/gASrmP1");
-  //Blynk.setProperty(V3, "url", "https://docs.blynk.io/en/getting-started/what-do-i-need-to-blynk/how-quickstart-device-was-made");
+  Blynk.setProperty(V3, "onImageUrl","https://imgur.com/a/gASrmP1"); 
 }
 
 
@@ -129,22 +112,6 @@ void checkUltrasonic() {
           counterOrang++;
           Blynk.virtualWrite(V4, counterOrang); // Update counter di Blynk
         }
-        
-        /*if(lastDistance != distance)
-        {
-          if (distance < lastDistanceCount-2 || distance> lastDistanceCount+2) 
-          { 
-            counterOrang++;
-            Blynk.virtualWrite(V4, counterOrang); // Update counter di Blynk
-            lastDistanceCount = distance;
-          } 
-          lastDistance = distance;
-        }*/
-        
-        // Jeda singkat untuk menghindari penghitungan ganda saat seseorang melintas
-        // Catatan: delay() di sini mungkin mengganggu loop Blynk, 
-        // Solusi yang lebih baik adalah menggunakan state machine atau timer kedua untuk jeda.
-        // Untuk saat ini, kita gunakan delay singkat.
         delay(500); 
       }
       
@@ -235,11 +202,7 @@ void setup()
 void loop()
 {
   Blynk.run(); // Wajib ada untuk menjalankan koneksi Blynk dan Timers
-  timer.run(); // Wajib ada untuk menjalankan fungsi yang didaftarkan di atas
-  // You can inject your own code or combine it with other sketches.
-  // Check other examples on how to communicate with Blynk. Remember
-  // to avoid delay() function!
-  // Logika timeout lampu tetap berjalan di loop utama
+  timer.run(); // Wajib ada untuk menjalankan fungsi yang didaftarkan di atas 
   if (motionDetected && millis() - lastMotionTime >= TIMEOUT_LAMP_OFF) {
       
       printMessageToConsol("Tidak ada gerakan terdeteksi selama 60 detik.");
