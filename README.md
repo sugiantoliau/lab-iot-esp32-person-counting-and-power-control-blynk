@@ -40,7 +40,7 @@ Hardware Components
 
     ```
     C++
-    char auth[] = "Your_Blynk_Auth_Token";
+    #define BLYNK_AUTH_TOKEN "Your_Blynk_Auth_Token"
     char ssid[] = "Your_WiFi_Name";
     char pass[] = "Your_WiFi_Password";
     ```
